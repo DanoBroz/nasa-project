@@ -26,13 +26,26 @@ function addNewLaunch(launch) {
         Object.assign(launch, {
             success: true,
             upcoming: true,
-            customers: ["ZTM", "NASA"],
+            customer: ["Zero to Mastery", "NASA"],
             flightNumber: latestFlightNumber,
         })
     );
 }
 
+function existsLaunchWithId(launchId) {
+    return launches.has(launchId);
+}
+
+function abortLaunchById(launchId) {
+    const aborted = launches.get(launchId);
+    aborted.upcoming = false;
+    aborted.success = false;
+    return aborted;
+}
+
 module.exports = {
     getAllLaunches,
     addNewLaunch,
+    existsLaunchWithId,
+    abortLaunchById,
 };
