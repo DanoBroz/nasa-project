@@ -97,6 +97,7 @@ async function findLaunch(filter) {
 async function getAllLaunches(skip, limit) {
     return await launchesDatabase
         .find({}, { _id: 0, __v: 0 })
+        .sort({ flightNumber: 1 })
         .skip(skip)
         .limit(limit);
 }
