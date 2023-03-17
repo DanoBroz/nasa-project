@@ -94,8 +94,11 @@ async function findLaunch(filter) {
     return await launchesDatabase.findOne(filter);
 }
 
-async function getAllLaunches() {
-    return await launchesDatabase.find({}, { _id: 0, __v: 0 });
+async function getAllLaunches(skip, limit) {
+    return await launchesDatabase
+        .find({}, { _id: 0, __v: 0 })
+        .skip(skip)
+        .limit(limit);
 }
 
 async function getLatestFlightNumber() {
